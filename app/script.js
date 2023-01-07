@@ -24,6 +24,13 @@ const App = () => {
 
   const formatedTime = useMemo(() => formatTime(time), [time]);
 
+
+  const playBell = () => {
+    const bell = new Audio('./sounds/bell.wav');
+    bell.play();
+  };
+
+
   const startTimer = () => {
     setTime(1200);
     setStatus(STATUSES.WORK);
@@ -38,9 +45,11 @@ const App = () => {
             if (prevStatus === STATUSES.WORK) {
               setStatus(STATUSES.REST)
               setTime(20);
+              playBell()
             } else {
               setStatus(STATUSES.WORK)
               setTime(1200);
+              playBell()
             }
 
           })
@@ -63,7 +72,7 @@ const App = () => {
     setStatus(STATUSES.OFF)
   }
 
-  const closeApp = ()=>{
+  const closeApp = () => {
     window.close()
   }
 
